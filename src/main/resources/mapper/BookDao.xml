@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.digitalchina.appname.api.dao.BookDao" >
+    <select id="findAll" parameterType="java.util.HashMap" resultType="Book">
+        select a.id, a.title, a.author, b.desc as category, a.description from book a
+        left join category b on a.category = b.code
+         where 1=1
+          <if test="title !=null and title != ''">
+            and a.title like concat('%', #{title}, '%')
+          </if>
+         order by a.createdtime desc
+         limit #{startIndex},#{endIndex}
+    </select>
+
+    <insert id="insertBook" parameterType="Book" keyProperty="id" useGeneratedKeys="true">
+        insert into book(title, author, category, description)
+            values (#{title},#{author},#{category}, #{description})
+    </insert>
+
+    <update id="updateBook" parameterType="Book" >
+        update book
+        set title = #{title}, author = #{author}, category = #{category}, description = #{description}
+        where id = #{id}
+    </update>
+
+    <delete id="deleteBook" parameterType="Long">
+        delete from book where id = #{id}
+    </delete>
+
+    <select id="selectBookById" parameterType="Long" resultType="Book">
+        select * from book where id = #{id}
+    </select>
+
+    <select id="findCategorys" resultType="Category">
+        select * from category
+    </select>
+
+    <select id="findTotalCount" resultType="int">
+        select count(0) from book
+        where 1=1
+        <if test="title !=null and title != ''">
+            and title like concat('%', #{title}, '%')
+        </if>
+    </select>
+</mapper>

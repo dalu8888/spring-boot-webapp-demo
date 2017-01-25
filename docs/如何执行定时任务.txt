@@ -1,0 +1,7 @@
+请注意：需要保证在计划的task没有运行时，如何重新运行
+
+1. 在BootApplication.java中加入@EnableScheduling
+2. 引入ScheduledTasks.java，并设置@Scheduled(fixedRate = 60000)
+
+
+Cron表达式可参考http://rainbowdesert.iteye.com/blog/2107220

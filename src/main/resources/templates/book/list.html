@@ -1,0 +1,32 @@
+<div id="bookTemplate">
+    <div th:fragment="bookList" xmlns:th="http://www.thymeleaf.org">
+        <div th:unless="${#lists.isEmpty(books)}">
+            <table class="table table-bordered table-hover definewidth m10">
+                <thead>
+                <tr>
+                    <th>书名</th>
+                    <th>作者</th>
+                    <th>分类</th>
+                    <th>内容简介</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tr th:each="book: ${books}">
+                    <input type="hidden" th:value="${book.id}"/>
+                    <td th:text="${book.title}">Java web技术内幕</td>
+                    <td th:text="${book.author}">徐洪波</td>
+                    <td th:text="${book.category}">应用开发</td>
+                    <td th:text="${book.description}">深入讲解JAVA WEB应用开发中的各项知识点，例如：编码、HTTP请求网站过程</td>
+                    <td>
+                        <a href="#" name="bookEdit">编辑</a>&nbsp;&nbsp;<a
+                            href="#" name="bookDelete">删除</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div th:if="${#lists.isEmpty(books)}">
+            <p>暂无书籍</p>
+        </div>
+        <input id="pageAllCount" type="hidden" th:value="${page.totalSize}" />
+    </div>
+</div>

@@ -1,0 +1,47 @@
+
+1. 在pom.xml中引入cache依赖，添加如下内容：
+
+	<dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-cache</artifactId>
+	</dependency>
+	<dependency>
+		<groupId>net.sf.ehcache</groupId>
+		<artifactId>ehcache</artifactId>
+	</dependency>
+
+2. 在Spring Boot主类中增加@EnableCaching注解开启缓存功能
+
+3. 在数据访问接口中，增加缓存配置注解，如：
+
+	@CacheConfig(cacheNames = "CacheNameForThisObject")
+	public class ApiController {
+		@Cacheable
+		public RtnData selectBookById(@RequestParam(required = false) String id){
+			...
+		}
+	}
+
+4. 在src/main/resources目录下创建：ehcache.xml
+
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="ehcache.xsd">
+	<defaultCache eternal="false" maxElementsInMemory="1000"
+		overflowToDisk="false" diskPersistent="false" timeToIdleSeconds="0"
+		timeToLiveSeconds="600" memoryStoreEvictionPolicy="LRU" />
+
+	<cache name="CacheNameForThisObject" maxElementsInMemory="100"
+		timeToLiveSeconds="300" />
+</ehcache>
+
+5. 如果需要测试，则在以下方法中加入断点，只有第一次才会进入方法
+ApiController.selectBookById(String id)
+
+
+########################## 华丽分隔 ############################
+
+如果需要查看@CacheConfig和@Cacheable参数的解释，可以查看以下文章
+
+Spring Boot中的缓存支持（一）注解配置与EhCache使用
+http://www.jianshu.com/p/64f684bd0ce9
+http://www.cnblogs.com/lic309/p/4072848.html

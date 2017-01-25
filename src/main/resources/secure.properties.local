@@ -1,0 +1,36 @@
+###config cas param
+#登录成功回调地址
+cas.loginSuccessBackUrl=http://localhost:8080/login/cas
+#登录地址
+cas.loginUrl=http://mscxsso.eastdc.cn:82
+#认证key
+cas.providerKey=key4CasAuthenticationProvider
+#无需健全url
+cas.ignoreAuthUrls=/css/**,/js/**,/layer/**,/img/**,/,/favicon.ico,/images/**
+#默认开启过滤
+cas.rejectPublicInvocations=false
+#开启此配置，未登录访问鉴权资源默认不跳转到登录页而直接返回500800错误
+cas.authPomptType=true
+#权限过滤器默认st校验入口
+cas.filterProcessesUrl=/login/cas
+#登录后是否访问默认页
+cas.alwaysTarget=true
+#默认页地址
+cas.targetUrl=http://localhost:8080
+#是否访问上次一request请求
+cas.redirectCurrentUrl=false
+
+
+### Configure upms  param
+#项目编号
+sc.pCode=demo
+#远程调用upms的apiKey
+sc.apiKey=543df6e9aed348dc85e05593b1c9c24d
+#所有需权限访问的url
+sc.allApplicationUrl=http://mscxupms.eastdc.cn:82/api/allApplication.json
+#用户信息
+sc.userInfoUrl=http://mscxupms.eastdc.cn:82/api/userInfo.json
+#当前用户所有可访问的url
+sc.authApplicationUrl=http://mscxupms.eastdc.cn:82/api/authApplication.json
+#httpclient连接超时时间
+sc.httpConnectionTimeout=60

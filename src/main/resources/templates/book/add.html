@@ -1,0 +1,53 @@
+
+<section>
+    <div>
+        <form onsubmit="return false;" class="form-horizontal" action="#" id="addForm">
+            <table class="table table-bordered table-hover definewidth m10 control-group">
+                <tr class="controls">
+                    <td width="10%" class="tableleft">书名</td>
+                    <td><input type="text" name="title"/></td>
+                </tr>
+                <tr class="controls">
+                    <td class="tableleft">作者</td>
+                    <td><input type="text" name="author"/></td>
+                </tr>
+                <tr class="controls">
+                    <td class="tableleft">分类</td>
+                    <td>
+                        <select name="category">
+                            <option th:each="category: ${categorys}" th:value="${category.code}"
+                                    th:text="${category.desc}"></option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tableleft">内容简介</td>
+                    <td>
+                        <textarea name="description" cols="80" rows="5"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tableleft"></td>
+                    <td class="text-right">
+                        <button type="submit" class="query-btn" id="saveBook">保存</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</section>
+
+<script type="text/javascript">
+    $(function(){
+        var valConfig = {
+            rules: {
+                title: {
+                    required: true,
+                    minlength: 2
+                }
+            },
+            submitHandler: function(){bookPage.doAdd()}
+        };
+        $('#addForm').validate(valConfig);
+    });
+</script>

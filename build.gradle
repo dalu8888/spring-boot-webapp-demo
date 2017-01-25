@@ -1,0 +1,45 @@
+buildscript {
+	ext {
+		springBootVersion = '1.4.0.RELEASE'
+	}
+	repositories {
+//		mavenCentral()
+		maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' } //使用阿里公共仓库,提高jar包下载速度
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
+
+jar {
+	baseName = 'demo'
+	version = '0.0.1-SNAPSHOT'
+}
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+//	mavenCentral()
+	maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+}
+
+
+dependencies {
+	compile('org.springframework.boot:spring-boot-starter-thymeleaf') //thymeleaf支持
+	compile('org.springframework.boot:spring-boot-starter')
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+	compile('org.springframework.boot:spring-boot-starter-security')
+	compile('org.mybatis:mybatis:3.4.0')
+	compile('org.mybatis.spring.boot:mybatis-spring-boot-starter:1.1.1') //mybatis
+	compile('mysql:mysql-connector-java:5.1.38')
+	compile('com.google.code.gson:gson:2.6.2')
+	compile('org.apache.httpcomponents:httpclient:4.5.2')
+	runtime('com.zaxxer:HikariCP:2.4.6')
+	runtime('net.sourceforge.nekohtml:nekohtml:1.9.22') //to support thymeleaf mode: LEGACYHTML5
+}
+
+

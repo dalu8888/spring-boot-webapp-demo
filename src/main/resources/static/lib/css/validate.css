@@ -1,0 +1,13 @@
+.form-horizontal .control-group .controls label{
+    float: left;
+}
+.form-horizontal .control-group .controls input{
+    float: left;
+}
+.form-horizontal .control-group .controls input.error{
+    border-color: red;
+}
+.form-horizontal .control-group .controls label.error {
+    color: red;
+    margin: 4px 15px;
+}

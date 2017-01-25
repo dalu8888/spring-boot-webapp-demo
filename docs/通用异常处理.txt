@@ -1,0 +1,12 @@
+管理端集成：
+1. 添加类com.digitalchina.common.exceptionhandler.GlobalExceptionHandler
+2. 添加templates/error.html
+
+服务端集成：
+1. 添加类com.digitalchina.common.exceptionhandler.GlobalExceptionHandler
+2. 不必引用templates/error.html
+3. 放开GlobalExceptionHandler中的第二个方法的注释，注释掉第一个方法
+4. 详见方法中的注释
+
+详情可查看文档
+http://www.jianshu.com/p/aa507b3552fa

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>近期书单</title>
+    <link rel="stylesheet" href="../../static/lib/css/bootstrap.min.css" th:href="@{/lib/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" href="../../static/lib/css/common.css" th:href="@{/lib/css/common.css}"/>
+    <link rel="stylesheet" href="../../static/lib/css/validate.css" th:href="@{/lib/css/validate.css}"/>
+
+    <script src="../../static/lib/js/jquery.1.11.1.min.js" th:src="@{/lib/js/jquery.1.11.1.min.js}"></script>
+    <script src="../../static/lib/js/bootstrap.min.js" th:src="@{/lib/js/bootstrap.min.js}"></script>
+    <script src="@upms.url@/scripts/common.js"></script>
+    <script src="../../static/lib/layer/layer.js" th:src="@{/lib/layer/layer.js}"></script>
+    <script th:src="@{/lib/layPage/laypage.js}"></script>
+	<script th:src="@{/lib/js/jquery.validate.js}"></script>
+</head>
+<body>
+
+<section>
+    <div class="container-fluid" style="margin-top: 30px">
+        <div>
+            书名：<input type="text" name="title" id="title" class="abc input-default" placeholder="" th:value="${title}">&nbsp;&nbsp;
+            <button type="button" class="btn btn-primary" id="btn">查询</button>
+            &nbsp;&nbsp;
+            <button type="button" class="btn btn-success" id="addbook">新增推荐</button>
+        </div>
+        <div class="row-fluid">
+            <div class="span12">
+                <div class="widget-box">
+                    <div class="widget-content no-padding" id="bookTemplate">
+                    </div>
+                    <div id="page" class="page" align="right" style="margin-right: 10px;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div id="addDialogs">
+</div>
+<script src="../../static/lib/js/book.js" th:src="@{/lib/js/book.js}"></script>
+</body>
+</html>

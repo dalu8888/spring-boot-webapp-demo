@@ -1,0 +1,18 @@
+demo中提供四个工具类:DateUtil,HttpClientUtil,NumberUtil,StringUtil
+1, DateUtil.java中提供以下功能
+各种日期的format形式
+对时间、日期、日期+时间的转换
+日期比较
+获取昨天，上星期，上个月方法
+2，HttpClientUtil.java中提供一下方法
+http post请求：doPost
+http get请求：doGet
+3，NumberUtil.java提供以下方法：
+String类型转换成其它Nummber类型，如integer，float，double
+从各种Number数组中选择最小值
+4，StringUtil.java
+空字符串和非空字符串的判断
+字符替换
+rightPad和leftPad
+字符串填充
+获取随机字符串

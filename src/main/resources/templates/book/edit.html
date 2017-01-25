@@ -1,0 +1,38 @@
+
+    <section>
+        <div>
+            <form onsubmit="return false;" action="#" id="updateForm" method="post">
+                <input type="hidden" name="id" th:value="${book.id}"/>
+                <table class="table table-bordered table-hover definewidth m10">
+                    <tr>
+                        <td width="10%" class="tableleft">书名</td>
+                        <td><input type="text" name="title" th:value="${book.title}"/></td>
+                    </tr>
+                    <tr>
+                        <td class="tableleft">作者</td>
+                        <td><input type="text" name="author" th:value="${book.author}"/></td>
+                    </tr>
+                    <tr>
+                        <td class="tableleft">分类</td>
+                        <td>
+                            <select name="category">
+                                <option th:each="category: ${categorys}" th:value="${category.code}" th:text="${category.desc}" th:selected="${category.code == book.category}"></option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tableleft">内容简介</td>
+                        <td>
+                            <textarea name="description" cols="80" rows="5" th:text="${book.description}"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tableleft"></td>
+                        <td>
+                            <button type="button" id="updateBtn" class="btn btn-primary">保存</button>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </section>

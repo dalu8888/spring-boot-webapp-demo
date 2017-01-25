@@ -1,0 +1,60 @@
+“这是一个开放话题，下面的两种方法视项目具体情况自行选择”
+
+############## 方法一：使用Spring Validation （不推荐）################
+这个方法是使用Hibernate Validation来做的。
+在使用时，需要将对象字段与表单字段对应起来，并在对象中加入validation的注解。
+所以，如果使用这个validation方法，建议将【数据库表对应的对象】和【表单对应的对象】分开来，不要让表单验证的代码污染了数据库表对应的对象。
+
+本方法的详情可参考以下资料
+http://www.iteye.com/topic/1144595
+
+############## 方法二：使用JQuery validate方法 ################
+修改/templates/book/add.html
+1. 确保input中加入了name属性，例如<input type="text" name="title" id="title"/>
+2. 在页面上加上以下Javascript
+	<script>
+		var valConfig = {
+			rules: {
+				title: {
+					required: true,
+					minlength: 2
+				}
+			}
+		};
+		$('#addBookForm').validate(valConfig);
+	</script>
+3. 在main.html中引入javascript
+	<script src="http://mscxupms.eastdc.cn:82/scripts/jquery.validate.js" ></script>
+
+详细说明请查看
+http://www.runoob.com/jquery/jquery-plugin-validate.html
+
+############## 方法三：后端验证，使用自定义的validate方法 ################
+
+1. 在Controller方法中加入验证代码
+
+    public String add(Book book, Model model){
+    	List<ErrorMessage> errors = FormValidationUtil.createEmptyErrors();
+    	FormValidationUtil.lengthValidator(book.getTitle(), 5, 10, "title", errors);
+    	FormValidationUtil.notBlankValidator(book.getAuthor(), "author", errors);
+    	
+    	if(!errors.isEmpty()){
+        	model.addAttribute("errors", errors);
+
+            return add(model);
+    	}
+    	
+        bookService.insertBook(book);
+        return "redirect:/list"; //跳转到/list，获取书单
+    }
+	
+2. 在Thymeleaf中显示错误
+
+	<ul class="list-unstyled alert clearfix mid_center">
+		<li th:each="e : ${errors}" class="red">
+			<span th:text="${e.fieldName}">The field name</span> |
+			<span th:text="${e.message}">The error message</span>
+		</li>
+	</ul>
+	
+3. TODO 将错误显示在字段输入框旁边
